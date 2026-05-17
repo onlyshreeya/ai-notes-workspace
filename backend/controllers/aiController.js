@@ -99,7 +99,7 @@ async function generateWithOpenRouter(prompt) {
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
-      "HTTP-Referer": process.env.CLIENT_URL || "http://localhost:5173",
+      "HTTP-Referer": process.env.CLIENT_URL,
       "X-Title": "Peblo Workplace",
     },
     body: JSON.stringify({
