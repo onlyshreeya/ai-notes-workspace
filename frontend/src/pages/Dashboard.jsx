@@ -504,9 +504,9 @@ function NoteEditorPanel({
     }
   };
 
-  const handleSave = async () => {
+  const handleSave = async (mode = "manual") => {
     setSaving(true);
-    setSaveState("saving");
+    setSaveState(mode === "manual" ? "saving" : "idle");
     const result = await onSave({ title: title || "Untitled Note", content, tags, colorId });
     if (result) {
       setSavedNote(result);
@@ -516,7 +516,7 @@ function NoteEditorPanel({
         tags: [...(result.tags || [])].sort(),
         colorId: result.colorId || "default",
       });
-      setSaveState("saved");
+      setSaveState(mode === "manual" ? "saved" : "idle");
     } else {
       setSaveState("idle");
     }
@@ -533,10 +533,9 @@ function NoteEditorPanel({
 
     if (!hasMeaningfulDraft) return;
 
-    setSaveState("pending");
     const timeoutId = setTimeout(async () => {
-      await handleSave();
-    }, 1200);
+      await handleSave("auto");
+    }, 5000);
 
     return () => clearTimeout(timeoutId);
   }, [snapshot, activeTab, saving]);
@@ -590,8 +589,8 @@ function NoteEditorPanel({
               </button>
             </div>
 
-            <button className="ep-save-btn" onClick={handleSave} disabled={saving}>
-              {saving ? <span className="spin-ring spin-dark" /> : saveState === "pending" ? "Saving soon" : saveState === "saved" ? "Saved" : "Save note"}
+            <button className="ep-save-btn" onClick={() => handleSave("manual")} disabled={saving}>
+              {saving ? <span className="spin-ring spin-dark" /> : saveState === "saved" ? "Saved" : "Save note"}
             </button>
           </div>
         </div>
