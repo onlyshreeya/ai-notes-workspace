@@ -8,14 +8,21 @@ import "../styles/dashboard.css";
 const API = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 const NOTE_COLORS = [
-  { id: "default", bg: "rgba(18, 14, 34, 0.94)", text: "#ffffff", border: "rgba(139, 92, 246, 0.24)", swatch: "#2d1f4e" },
-  { id: "lavender", bg: "#ede9fe", text: "#1e1b4b", border: "#c4b5fd", swatch: "#ddd6fe" },
-  { id: "mint", bg: "#d1fae5", text: "#064e3b", border: "#6ee7b7", swatch: "#a7f3d0" },
-  { id: "peach", bg: "#ffedd5", text: "#431407", border: "#fdba74", swatch: "#fed7aa" },
-  { id: "sky", bg: "#e0f2fe", text: "#0c4a6e", border: "#7dd3fc", swatch: "#bae6fd" },
-  { id: "rose", bg: "#ffe4e6", text: "#4c0519", border: "#fca5a5", swatch: "#fecaca" },
-  { id: "lemon", bg: "#fef9c3", text: "#422006", border: "#fde047", swatch: "#fef08a" },
-  { id: "sage", bg: "#dcfce7", text: "#14532d", border: "#86efac", swatch: "#bbf7d0" },
+  { id: "default", theme: "dark", bg: "rgba(18, 14, 34, 0.94)", text: "#ffffff", border: "rgba(139, 92, 246, 0.24)", swatch: "#2d1f4e" },
+  { id: "midnight", theme: "dark", bg: "#171327", text: "#f8f7ff", border: "#433873", swatch: "#221a38" },
+  { id: "graphite", theme: "dark", bg: "#1c2028", text: "#f5f7fb", border: "#3f4654", swatch: "#2a3140" },
+  { id: "forest-night", theme: "dark", bg: "#12211d", text: "#eefcf6", border: "#295447", swatch: "#183129" },
+  { id: "merlot", theme: "dark", bg: "#2a1620", text: "#fff4f7", border: "#6a3448", swatch: "#402131" },
+  { id: "cobalt", theme: "dark", bg: "#131d35", text: "#eef4ff", border: "#324f91", swatch: "#1d2d54" },
+  { id: "lavender", theme: "light", bg: "#ede9fe", text: "#1e1b4b", border: "#c4b5fd", swatch: "#ddd6fe" },
+  { id: "mint", theme: "light", bg: "#d1fae5", text: "#064e3b", border: "#6ee7b7", swatch: "#a7f3d0" },
+  { id: "peach", theme: "light", bg: "#ffedd5", text: "#431407", border: "#fdba74", swatch: "#fed7aa" },
+  { id: "sky", theme: "light", bg: "#e0f2fe", text: "#0c4a6e", border: "#7dd3fc", swatch: "#bae6fd" },
+  { id: "rose", theme: "light", bg: "#ffe4e6", text: "#4c0519", border: "#fca5a5", swatch: "#fecaca" },
+  { id: "lemon", theme: "light", bg: "#fef9c3", text: "#422006", border: "#fde047", swatch: "#fef08a" },
+  { id: "sage", theme: "light", bg: "#dcfce7", text: "#14532d", border: "#86efac", swatch: "#bbf7d0" },
+  { id: "paper", theme: "light", bg: "#f8fafc", text: "#0f172a", border: "#cbd5e1", swatch: "#e2e8f0" },
+  { id: "blush", theme: "light", bg: "#fff1f2", text: "#881337", border: "#fda4af", swatch: "#fecdd3" },
 ];
 
 const HEADING_STYLES = [
@@ -404,7 +411,7 @@ function NoteEditorPanel({
   const lastSavedSnapshotRef = useRef("");
 
   const color = getColorById(colorId);
-  const isLight = colorId !== "default";
+  const isLight = color.theme === "light";
   const links = extractLinks(content);
   const heading = HEADING_STYLES.find((item) => item.id === headingId) || HEADING_STYLES[0];
   const tagSuggestions = [...new Set([...availableTags, ...SUGGESTED_TAGS])]
@@ -791,7 +798,7 @@ function NoteEditorPanel({
 
 function NoteCard({ note, onEdit, onDelete, onStar, onShare, onArchive }) {
   const color = getColorById(note.colorId);
-  const isLight = note.colorId && note.colorId !== "default";
+  const isLight = color.theme === "light";
   const links = extractLinks(note.content);
   const [menuOpen, setMenuOpen] = useState(false);
 
