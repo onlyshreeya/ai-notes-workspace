@@ -102,6 +102,15 @@ function getColorById(id) {
   return NOTE_COLORS.find((color) => color.id === id) || NOTE_COLORS[0];
 }
 
+function getThemeColors(theme = "dark") {
+  return NOTE_COLORS.filter((color) => color.theme === theme);
+}
+
+function getDefaultColorIdForTheme(theme = "dark") {
+  const match = getThemeColors(theme)[0];
+  return match ? match.id : NOTE_COLORS[0].id;
+}
+
 function escapeHtml(value = "") {
   return value
     .replace(/&/g, "&amp;")
@@ -391,6 +400,7 @@ function NoteEditorPanel({
   onSave,
   onClose,
   token,
+  theme,
   availableTags = [],
   onOpenShareModal,
   onToggleArchive,
@@ -409,6 +419,7 @@ function NoteEditorPanel({
   const [images, setImages] = useState([]);
   const fileRef = useRef();
   const lastSavedSnapshotRef = useRef("");
+  const themeColors = getThemeColors(theme);
 
   const color = getColorById(colorId);
   const isLight = color.theme === "light";
@@ -430,7 +441,7 @@ function NoteEditorPanel({
     setTitle(note?.title || "");
     setContent(note?.content || "");
     setTags(note?.tags || []);
-    setColorId(note?.colorId || "default");
+    setColorId(note?.colorId || getDefaultColorIdForTheme(theme));
     setSavedNote(note || null);
     setImages([]);
     setHeadingId("none");
@@ -440,10 +451,18 @@ function NoteEditorPanel({
       title: note?.title || "Untitled Note",
       content: note?.content || "",
       tags: [...(note?.tags || [])].sort(),
-      colorId: note?.colorId || "default",
+      colorId: note?.colorId || getDefaultColorIdForTheme(theme),
     });
     setSaveState("idle");
-  }, [note, isNew]);
+  }, [note, isNew, theme]);
+
+  useEffect(() => {
+    const nextTheme = theme || "dark";
+    const selected = getColorById(colorId);
+    if (selected.theme !== nextTheme) {
+      setColorId(getDefaultColorIdForTheme(nextTheme));
+    }
+  }, [theme, colorId]);
 
   const addTagValue = (value) => {
     const nextTag = value.trim().replace(/^#/, "");
@@ -640,7 +659,7 @@ function NoteEditorPanel({
                     Color
                   </span>
                   <div className="ep-swatches">
-                    {NOTE_COLORS.map((item) => (
+                    {themeColors.map((item) => (
                       <button
                         key={item.id}
                         className={`ep-swatch ${colorId === item.id ? "sel" : ""}`}
@@ -1447,6 +1466,7 @@ export default function Dashboard() {
             onSave={handleSave}
             onClose={closeEditor}
             token={token}
+            theme={theme}
             availableTags={allTags}
             onOpenShareModal={openShareModal}
             onToggleArchive={handleArchive}

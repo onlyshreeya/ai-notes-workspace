@@ -5,8 +5,6 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <div className="app-scale-root">
-      <App />
-    </div>
+    <App />
   </React.StrictMode>
 );
