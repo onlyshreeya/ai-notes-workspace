@@ -3,6 +3,8 @@
 Production-style AI notes workspace built for the **Peblo Full Stack Developer Challenge**. Peblo Workplace combines secure authentication, a polished glassmorphism dashboard, structured note management, and AI-assisted productivity features into a modern SaaS-style collaboration experience.
 
 ---
+<img width="1920" height="1080" alt="Screenshot (24)" src="https://github.com/user-attachments/assets/424602ae-32ed-48b5-90e6-1591e092b5ac" />
+
 
 ## Overview
 
@@ -20,11 +22,11 @@ The product is intentionally designed like a scalable startup workspace:
 
 ## Live Demo
 
-- App: `YOUR_DEPLOYMENT_LINK`
+- App: [Peblo Workspace](https://ai-notes-workspace-neon.vercel.app/)
 
 ## Demo Video
 
-- Walkthrough: `YOUR_VIDEO_LINK`
+- Walkthrough: [Watch Demo](https://1drv.ms/v/c/f1ef0ae8f13f2f55/IQBIBIdGUSMbS7btMiqr-MzIAWmg0TNE4crhxkettKUT5Rs)
 
 ---
 
@@ -36,10 +38,11 @@ The product is intentionally designed like a scalable startup workspace:
 - Create, edit, update, and delete notes
 - Auto-save workflow for a smoother editing experience
 - Tagging and note categorization
-- Color-coded note organization
 - Search and filtering across titles, content, and tags
+- Color-coded note organization
 - Starred notes for quick prioritization
 - Archive and restore flows for long-term note management
+
 
 ### AI Productivity Layer
 
@@ -56,7 +59,6 @@ The product is intentionally designed like a scalable startup workspace:
 - Dedicated public note view route
 
 ### Analytics and Dashboard Experience
-
 - Productivity insights endpoint
 - AI usage statistics
 - Weekly activity summary
@@ -71,12 +73,18 @@ The product is intentionally designed like a scalable startup workspace:
 
 | View | Placeholder |
 |------|-------------|
-| Landing Page | `SCREENSHOT_PATH` |
-| Authentication | `SCREENSHOT_PATH` |
-| Dashboard Home | `SCREENSHOT_PATH` |
-| Notes Workspace | `SCREENSHOT_PATH` |
-| AI Insights | `SCREENSHOT_PATH` |
-| Public Shared Note | `SCREENSHOT_PATH` |
+| Landing Page | `<img width="1920" height="1080" alt="Screenshot (19)" src="https://github.com/user-attachments/assets/664d5e07-3b61-470a-a7f3-284c30d1bda4" />
+` |
+| Authentication | `<img width="1920" height="1080" alt="Screenshot (23)" src="https://github.com/user-attachments/assets/595f2613-a74b-4f7e-aa6e-ca3a0529cd4f" />
+` |
+| Dashboard Home | `<img width="1920" height="1080" alt="Screenshot (24)" src="https://github.com/user-attachments/assets/a88afd06-5585-4568-bade-641edc21bcac" />
+` |
+| Notes Workspace | `<img width="1920" height="1080" alt="Screenshot (25)" src="https://github.com/user-attachments/assets/582e2362-8c3f-4d7b-9287-22c2c378dd55" />
+` |
+| AI Insights | `<img width="1920" height="1080" alt="Screenshot (26)" src="https://github.com/user-attachments/assets/03528d49-2ea1-48b8-82ef-f761463a6d72" />
+` |
+| Public Shared Note | `<img width="1920" height="1080" alt="Screenshot (29)" src="https://github.com/user-attachments/assets/38c5021f-5bc0-49de-ba2b-2d9e608ef79f" />
+` |
 
 ---
 
@@ -418,49 +426,6 @@ Output directory:
 dist
 ```
 
-### SPA Routing Note
-
-Because the frontend uses React Router, configure rewrites so all app routes resolve to `index.html`.
-
----
-
-## Backend Deployment
-
-Recommended targets:
-
-- Render
-- Railway
-- Fly.io
-
-Set the backend environment variables from the earlier table, especially:
-
-- `MONGO_URI`
-- `JWT_SECRET`
-- `GEMINI_API_KEY`
-- `CLIENT_URL`
-
-Start command:
-
-```bash
-npm start
-```
-
-Health check endpoint:
-
-```text
-GET /
-```
-
-Returns:
-
-```json
-{
-  "status": "OK",
-  "message": "Peblo Workplace API"
-}
-```
-
----
 
 ## Future Improvements
 
