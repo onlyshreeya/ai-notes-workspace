@@ -422,7 +422,7 @@ function LandingPage() {
       {/* FOOTER */}
       <footer>
         <div className="footer-left">
-          Peblo Workplace · Built in India
+          Peblo Workplace · Built By Shreeya Srivastava
         </div>
 
         <div className="footer-right">
