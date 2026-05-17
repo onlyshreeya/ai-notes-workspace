@@ -1198,6 +1198,14 @@ function ArchivedPage({ notes, onEdit, onDelete, onArchive }) {
 }
 
 export default function Dashboard() {
+  useEffect(() => {
+    document.body.classList.add("dashboard-body");
+
+    return () => {
+      document.body.classList.remove("dashboard-body");
+    };
+  }, []);
+
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
   const [insights, setInsights] = useState(null);

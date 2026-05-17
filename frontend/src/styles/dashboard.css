@@ -86,13 +86,16 @@
 }
 
 html,
-body,
-#root {
-  height: 100%;
+body {
   margin: 0;
 }
 
-body {
+body.dashboard-body,
+body.dashboard-body #root {
+  height: 100%;
+}
+
+body.dashboard-body {
   font-family: "Figtree", sans-serif;
   background:
     radial-gradient(circle at top left, rgba(139, 92, 246, 0.12), transparent 32%),
